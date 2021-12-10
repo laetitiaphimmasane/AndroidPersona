@@ -3,6 +3,8 @@ from django.views.generic import View
 from .models import Persona
 import requests
 
+
+
 class PersonaListView(View):
     template_name = 'persona_app/template_list.html'
     model = Persona
@@ -21,17 +23,29 @@ class PersonaDetailsView(View):
 
 
 class PersonaGenerate(View):
-    payload = ""
-    
+    new_persona= ""
+
     def get(self, request):
-        r = requests.get("https://randomuser.me/api?nat=fr")
-        personna = r.json['results'][0]
-        print(personna)
-    def post(self, request, data_a_poster):
-        def post(self, request, data_a_poster):
-        ##ici les données du form        
-        payload = {'first_name': data_a_poster.name.first,
-                   'last_name' : data_a_poster.name.last,
-                   }
-        r = requests.post("http://httpbin.org/post",data=payload)
-        # if r.status_code == requests.codes.ok :
+        r = requests.get(" https://randomuser.me/api?nat=fr")
+        req = r.json()
+        persona = req['results'][0]
+        self.new_persona = Persona.objects.create(
+            first_name = persona['name']['first'],
+            last_name = persona['name']['last'],
+            address_street = persona['location']['street']['name'],
+            address_number = persona['location']['street']['number'],
+            city = persona['location']['city'],
+            country = persona['location']['country'],
+            postcode = persona['location']['postcode'],
+            email = persona['email'],
+            username = persona['login']['username'],
+            password = persona['login']['password'],
+            age = persona['registered']['age'],
+            picture = persona['picture']['thumbnail']
+        )
+        if r.status_code == requests.codes.ok:
+            return redirect('url_persona_details', self.new_persona.id)
+
+
+
+

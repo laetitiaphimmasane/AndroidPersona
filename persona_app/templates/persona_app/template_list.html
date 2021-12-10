@@ -1,4 +1,4 @@
-{% extends '.\template.html'%}
+{% extends 'template.html'%}
 
 
 {% block title_page %}
@@ -11,7 +11,9 @@
 <ul>
     {% for persona in persona_list %}
         <li>
-        Persona : ({{ persona.id }}) <strong><a href="{% url 'url_persona_details' persona.id %}">{{ persona.first_name }} {{ persona.last_name }}</a></strong><br/>
+        Persona : ({{ persona.id }}) <strong><a href="{% url 'url_persona_details' persona.id %}">
+            {{ persona.first_name }} {{ persona.last_name }}
+        </a></strong><br/>
                 Email : {{ persona.email }}
         </li>
     {% endfor %}
