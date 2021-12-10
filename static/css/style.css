@@ -57,6 +57,11 @@ main{
     padding: 8px;
 }
 
+.list__table th {
+    background-color: #333333;
+    color: #fff;
+}
+
 .list__table tr:nth-child(even) {
     background-color: #dddddd;
 }
