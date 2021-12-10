@@ -45,6 +45,8 @@ class PersonaGenerate(View):
         )
         if r.status_code == requests.codes.ok:
             return redirect('url_persona_details', self.new_persona.id)
+        #If r.status_code != 200
+        return redirect('url_persona_list')
 
 
 
