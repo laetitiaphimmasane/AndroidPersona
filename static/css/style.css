@@ -1,0 +1,62 @@
+body{
+    margin: 0;
+    cursor: default;
+}
+main{
+    margin: 8px;
+}
+/*----- HEADER -----*/
+
+.header{
+    background-color: #000;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.header__title{
+    margin: 0;
+}
+
+/*----- PERSONA_LIST -----*/
+
+.list__btn{
+    display: block;
+    margin: 15px auto;
+    width: 220px;
+    border-radius: 5px;
+    background-color: #dddddd;
+    padding: 8px;
+    box-shadow:0px 0px 4px 1px rgba(0, 0, 0, .18);
+}
+
+.list__table a, .list__btn > * {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.list__btn > * {
+    font-weight: bold;
+}
+
+.list__table a:hover,  .list__btn > *:hover {
+    color: #4f4f4f;
+}
+
+.list__table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+}
+
+.list__table td,.list__table th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.list__table tr:nth-child(even) {
+    background-color: #dddddd;
+}

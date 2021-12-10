@@ -1,22 +1,37 @@
 {% extends 'template.html'%}
 
-
 {% block title_page %}
-    <h2>Liste des Personas :</h2>
+    Liste des Personas :
 {% endblock title_page %}
 
-
-{%block content%}
-<a href="{% url 'url_persona_generate'%}">Ajouter un nouveau persona</a>
-<ul>
-    {% for persona in persona_list %}
-        <li>
-        Persona : ({{ persona.id }}) <strong><a href="{% url 'url_persona_details' persona.id %}">
-            {{ persona.first_name }} {{ persona.last_name }}
-        </a></strong><br/>
-                Email : {{ persona.email }}
-        </li>
-    {% endfor %}
-<ul>
-
-{% endblock content%}
+{% block content %}
+    <button class="list__btn">
+        <a href="{% url 'url_persona_generate'%}">
+            Ajouter un nouveau persona
+        </a>
+    </button>
+    {% if persona_list %}
+    <table class="list__table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom complet</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for persona in persona_list %}
+                <tr>
+                    <td>{{ persona.id }}</td>
+                    <td>
+                        <a href="{% url 'url_persona_details' persona.id %}">
+                            {{ persona.first_name }} {{ persona.last_name }}
+                        </a>
+                    </td>
+                    <td>{{ persona.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock content %}
