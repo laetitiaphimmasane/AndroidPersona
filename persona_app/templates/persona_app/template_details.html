@@ -3,32 +3,40 @@
 {%block title_page%} Détail d'un persona : {% endblock title_page %}
 
 {%block content%}
-    <h2>Profil de {{persona_details.first_name}} - {{persona_details.age}} ans </h2>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="style.css" />
+<div class ="wrapper">
+    <div class="left">
+        <h2 class="profil_title">Profil de {{persona_details.first_name}} - {{persona_details.age}} ans </h2>
+        <img class="img_persona" src="{{persona_details.picture}}" width="80" height="80" alt="Photo représentant le persona">
+        <h3 class="number_persona"> Numéro  {{persona_details.id}} <br> </h3>
+        <h3 class="name_persona"> Prénom : {{persona_details.first_name}} <br> </h3>
+        <h3>  Nom : {{persona_details.last_name}} </h3>
+    </div>
 
-    <img src="{{persona_details.picture}}" width="80" height="80" alt="Photo représentant le persona">
+    <div class="right">
+
+        <div class="info">
+            <h3>Informations</h3>
+
+            <h4 class="login_persona">Identifiants : </h4>
+            username : {{persona_details.username}} <br>
+            password : {{persona_details.password}} <br>
+
+            <h4 class="contact_persona">Contact : </h4>
+            Numéro de rue : {{persona_details.address_number}} <br>
+            {% if persona_details.address_street|length >= 15 %}
+            Nom de la rue :{{ persona_details.address_street|truncatechars:15 }}
+            {%else%}
+            Nom de la rue :{{persona_details.address_street}}
+            {% endif %}
     
-    <h3>
-        Numéro  {{persona_details.id}} <br>
-    </h3>
-    Prénom : {{persona_details.first_name}} <br>
-        Nom : {{persona_details.last_name}}
+            <h4 class="adress_persona">Adresse postale : </h4>
+            Ville : {{persona_details.postcode}} -- {{persona_details.city}} <br>
+            Email : {{persona_details.email}} <br><br>
+        </div>
 
-
-    <h3>Identifiants : </h3>
-    username : {{persona_details.username}} <br>
-    password : {{persona_details.password}} <br>
-
-    <h3>Contact : </h3>
-    Numéro de rue : {{persona_details.address_number}} <br>
-    {% if persona_details.address_street|length >= 15 %}
-        Nom de la rue :{{ persona_details.address_street|truncatechars:15 }}
-    {%else%}
-        Nom de la rue :{{persona_details.address_street}}
-    {% endif %}
-    
-    <h4>Adresse postale : </h4>
-    Ville : {{persona_details.postcode}} -- {{persona_details.city}} <br>
-    Email : {{persona_details.email}} <br><br>
-    
-    <a href="{% url 'url_persona_list' %}">Retour à la liste des Personas</a>
+        <a class="link_back" href="{% url 'url_persona_list' %}">Retour à la liste des Personas</a>
+    </div>
+</div>
 {%endblock content%}
