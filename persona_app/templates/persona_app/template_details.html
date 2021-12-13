@@ -32,7 +32,7 @@
                 <p> Numéro de rue : {{persona_details.address_number}}</p>
                 <p>
                  {% if persona_details.address_street|length >= 15 %}
-                    Nom de la rue :{{ persona_details.address_street|truncatechars:15 }}
+                    Nom de la rue : {{ persona_details.address_street|truncatechars:15 }}
                 {%else%}
                     Nom de la rue :{{persona_details.address_street}}
                 {% endif %}
