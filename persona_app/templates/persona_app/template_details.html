@@ -3,40 +3,51 @@
 {%block title_page%} Détail d'un persona : {% endblock title_page %}
 
 {%block content%}
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <link rel="stylesheet" href="style.css" />
-<div class ="wrapper">
-    <div class="left">
-        <h2 class="profil_title">Profil de {{persona_details.first_name}} - {{persona_details.age}} ans </h2>
-        <img class="img_persona" src="{{persona_details.picture}}" width="80" height="80" alt="Photo représentant le persona">
-        <h3 class="number_persona"> Numéro  {{persona_details.id}} </h3>
-        <h3 class="name_persona"> Prénom : {{persona_details.first_name}} </h3>
-        <h3>  Nom : {{persona_details.last_name}} </h3>
-    </div>
+<div class ="details_wrapper">
+    <article class="details_wrapper__left">
+        <h2 class="details_wrapper__left__title">Profil N° {{persona_details.id}}</h2>
+        <img class="details_wrapper__lef__img" src="{{persona_details.picture}}" alt="Photo représentant le persona">
+        <p class="details_wrapper__left__text" >Nom : {{persona_details.last_name}}</p>
+        <p class="details_wrapper__left__text" >Prénom : {{persona_details.first_name}} </p>
+        <p class="details_wrapper__left__text" >Age : {{persona_details.age}} ans</p>
+    </article>
 
-    <div class="right">
+    <article class="details_wrapper__right">
+        <div class="details_wrapper__right__info">
+            <h2>Informations</h2>
 
-        <div class="info">
-            <h3>Informations</h3>
+            <div class="details_wrapper__right__section">
+                <p>Identifiants : </p>
+                <p>username : {{persona_details.username}}</p>
+                <p>password : {{persona_details.password}}</p>
+            </div>
 
-            <h4 class="login_persona">Identifiants : </h4>
-            username : {{persona_details.username}} 
-            password : {{persona_details.password}} 
+            <div class="details_wrapper__right__section">
+                <p>Contact :</p>
+                <p>Email : {{persona_details.email}}</p>
+            </div>
 
-            <h4 class="contact_persona">Contact : </h4>
-            Numéro de rue : {{persona_details.address_number}} 
-            {% if persona_details.address_street|length >= 15 %}
-            Nom de la rue :{{ persona_details.address_street|truncatechars:15 }}
-            {%else%}
-            Nom de la rue :{{persona_details.address_street}}
-            {% endif %}
-    
-            <h4 class="adress_persona">Adresse postale : </h4>
-            Ville : {{persona_details.postcode}} -- {{persona_details.city}} 
-            Email : {{persona_details.email}} <br><br>
+            <div class="details_wrapper__right__section">
+                <p>Adresse :</p>
+                <p> Numéro de rue : {{persona_details.address_number}}</p>
+                <p>
+                 {% if persona_details.address_street|length >= 15 %}
+                    Nom de la rue :{{ persona_details.address_street|truncatechars:15 }}
+                {%else%}
+                    Nom de la rue :{{persona_details.address_street}}
+                {% endif %}
+                </p>
+                <p>Code postal : {{persona_details.postcode}}</p>
+                <p>Ville : {{persona_details.city}}</p>
+            </div>
         </div>
 
-        <a class="link_back" href="{% url 'url_persona_list' %}">Retour à la liste des Personas</a>
-    </div>
+        <button class="btn ">
+            <a href="{% url 'url_persona_list' %}">
+                Retour à la liste des Personas
+            </a>
+        </button>
+    </article>
 </div>
+
 {%endblock content%}

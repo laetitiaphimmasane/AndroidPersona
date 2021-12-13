@@ -16,4 +16,4 @@ class Persona (models.Model):
     
     
     def __str__(self):
-        return f"Persona ({id}) {self.first_name} {self.last_name}"
+        return f"Persona ({self.id}) {self.first_name} {self.last_name}"
